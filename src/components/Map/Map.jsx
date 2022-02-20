@@ -22,13 +22,16 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
         onChange={(e) => {
           const {
             center: { lat, lng },
+            marginBounds: { ne, sw },
           } = e;
-
           if (lat && lng) {
             // set your coordinate state here
             setCoordinates({ lat, lng });
           }
-          console.log(coordinates);
+          if (ne && sw) {
+            setBounds({ ne, sw });
+          }
+          console.log(e);
         }}
         onChildClick={""}
       ></GoogleMapReact>

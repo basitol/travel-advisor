@@ -14,11 +14,24 @@ const App = () => {
   const [bounds, setBounds] = useState(null);
 
   useEffect(() => {
+    // if ("geolocation" in navigator) {
+    //   navigator.geolocation.getCurrentPosition();
+    // }
+    navigator.geolocation.getCurrentPosition(
+      ({ coordinates: { latitude, longitude } }) => {
+        console.log(latitude, longitude);
+        setCoordinates({ lat: latitude, lng: longitude });
+      }
+    );
+    console.log(coordinates, bounds);
+
     getPlacesData().then((data) => {
       console.log(data);
       setPlaces(data);
     });
   }, []);
+
+  // useEffect(() => {}, []);
 
   return (
     <>
